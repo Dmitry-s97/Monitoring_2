@@ -9,7 +9,7 @@ size=$3
 export start=$(date +%s)
 export current_date=$(date  +%d%m%y)
 export start_time=$(date +'%Y-%m-%d %H:%M:%S') # Cохраняем время начала выполнения скрипта
-export log="log.log"
+export log="log.txt"
 
 source check_parameters.sh; command 
 check_parameters
