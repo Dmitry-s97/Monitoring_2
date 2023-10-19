@@ -19,3 +19,15 @@ if [[ $# -eq 0 ]]; then
 else 
   echo "Неверное количество аргументов. Должно быть 0"
 fi
+
+# Коды ответа
+# "200" - OK
+# "201" - Created
+# "400" - bad request
+# "401" - Unauthorized
+# "403" - Forbidden
+# "404" - Not Found
+# "500" - Internal Server Error
+# "501" - Not Implemented
+# "502" - Bad Gateway
+# "503" - Service Unavailable
