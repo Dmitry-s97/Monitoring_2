@@ -5,14 +5,18 @@ if [[ $# -eq 0 ]]; then
     log=$i.log
     touch $log
     num_writes=`shuf -i 100-1000 -n 1`
+    my_date=`date +"%F %H:%M:%S"`
+    second=1
     for ((j=0;j<num_writes;j++)); do
-      times=`date -d "$date $((RANDOM % 24)):$((RANDOM % 60)):$((RANDOM % 60))" +[%d/%b/%Y:%H:%M:%S]`
+      times="[`date -d "$my_date ${second}"sec"" +"%d/%b/%Y:%H:%M:%S"` +0300]"
       ip="$((RANDOM % 256)).$((RANDOM % 256)).$((RANDOM % 256)).$((RANDOM % 256))"
       method=`shuf -n1 Methods`
       url=`shuf -n1 URL`
       code=`shuf -n1 Code`
       agent=`shuf -n1 Agents`
-      echo "$ip - - $times \"$method $url HTTP/1.1\" $code \"$url\" \"$agent\"" >> $log
+      size=`shuf -i 15-100 -n 1`
+      echo "$ip - - ${times} \"${method} ${url} HTTP/1.1\" $code $size \"-\" \"${agent}\"" >> $log
+      second=$(($second + 1))
     done
     sort -k 4 -o "$log" "$log"
   done
